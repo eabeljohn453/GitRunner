@@ -19,7 +19,7 @@ export async function runAdd(){
         const {message} = await inquirer.prompt({
             type:"input",
             name:"message",
-            message:"enter the commit message",
+            message:"Enter the commit message: ",
             validate:(input)=>input.length>0||"commit message cannot be empty!"
 
      } )
