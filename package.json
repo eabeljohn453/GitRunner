@@ -1,0 +1,15 @@
+{
+  "name": "simplegit",
+  "version": "1.0.0",
+  "description": "A Git automation CLI tool with PR and merge workflow",
+  "type": "module",
+  "bin": {
+    "simple": "./bin/simple.js"
+  },
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "commander": "^11.1.0",
+    "inquirer": "^9.3.8",
+    "octokit": "^3.2.2"
+  }
+}
