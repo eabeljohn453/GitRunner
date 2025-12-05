@@ -25,7 +25,7 @@ export async function runAdd(){
      } )
      console.log(chalk.blue("Adding the files"))
      await run("git add .")
-     console.log(chalk.blue("commiting the message"))
+     console.log(chalk.blue("Commiting the message"))
      try{
         await run(`git commit -m "${message}"`)
         console.log(chalk.green("✔ Commit successful"));
