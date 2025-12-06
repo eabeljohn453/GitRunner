@@ -4,7 +4,7 @@
   "description": "A Git automation CLI tool with PR and merge workflow",
   "type": "module",
   "bin": {
-    "simple": "./bin/simple.js"
+    "auto": "./bin/simple.js"
   },
   "dependencies": {
     "chalk": "^5.6.2",

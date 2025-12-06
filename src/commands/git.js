@@ -3,15 +3,7 @@ import chalk from "chalk";
 import { runAdd } from "./add.js";
 import { exec } from "child_process"
 import { handleBranchMenu } from "./branch.js";
-
-
-const run = (cmd) =>
-    new Promise((resolve, reject) => {
-        exec(cmd, (err, stdout, stderr) => {
-            if (err) reject(stderr.trim())
-            resolve(stdout.trim())
-        })
-    })
+ 
 export async function runGitInteractive() {
 
     while (true) {
