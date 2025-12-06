@@ -1,8 +1,43 @@
 {
-  "name": "git-boossst",
-  "version": "1.0.0",
+  "name": "git-autotool",
+  "version": "2.0.1",
   "description": "A Git automation CLI tool with PR and merge workflow",
   "type": "module",
+  "keywords": [
+    "git",
+    "automation",
+    "cli",
+    "git tool",
+    "git automation",
+    "pull request",
+    "merge",
+    "git cli",
+    "workflow",
+    "devops",
+    "developer tools",
+    "github",
+    "git automation tool",
+    "git helper",
+    "git workflow",
+    "git actions",
+    "git scripts",
+    "git cli tool",
+    "dev workflow",
+    "developer productivity",
+    "git branching",
+    "git merge tool",
+    "git commit tool",
+    "git push automation",
+    "github cli",
+    "github helper",
+    "github pr",
+    "pull-request-tool",
+    "branch management",
+    "git manager",
+    "git utilities",
+    "automation cli",
+    "node cli tool"
+  ],
   "bin": {
     "auto": "./bin/simple.js"
   },
@@ -11,5 +46,15 @@
     "commander": "^11.1.0",
     "inquirer": "^9.3.8",
     "octokit": "^3.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eabeljohn453/GitRunner"
+  },
+  "author": "Eabel John",
+  "license": "MIT",
+  "homepage": "https://github.com/eabeljohn453/GitRunner#readme",
+  "bugs": {
+    "url": "https://github.com/eabeljohn453/GitRunner/issues"
   }
 }
