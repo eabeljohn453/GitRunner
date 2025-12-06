@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-import { program } from "commander";
-import {runAdd} from "../src/commands/add.js"
+import { program } from "commander"; 
 import { runGitInteractive } from "../src/commands/git.js"; 
   
     program
