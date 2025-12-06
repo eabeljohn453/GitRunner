@@ -1,5 +1,5 @@
 {
-  "name": "simplegit",
+  "name": "git-boossst",
   "version": "1.0.0",
   "description": "A Git automation CLI tool with PR and merge workflow",
   "type": "module",

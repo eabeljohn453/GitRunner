@@ -1,7 +1,6 @@
 import inquirer from "inquirer";
 import {exec} from "child_process"
-import chalk from "chalk"; 
-import { stderr } from "process";
+import chalk from "chalk";  
 const run =(cmd)=>
     new Promise((resolve,reject)=>{
         exec(cmd,(err,stdout,stderr)=>{
@@ -16,13 +15,13 @@ export async function runAdd(){
     try{
         const branch=await run("git branch --show-current");
         console.log(chalk.blue(`The current branch is - ${branch}`))
-        const {message} = await inquirer.prompt({
+        const {message} = await inquirer.prompt([{
             type:"input",
             name:"message",
             message:"Enter the commit message: ",
             validate:(input)=>input.length>0||"commit message cannot be empty!"
 
-     } )
+     },] )
      console.log(chalk.blue("Adding the files"))
      await run("git add .")
      console.log(chalk.blue("Commiting the message"))
