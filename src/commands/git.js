@@ -29,10 +29,15 @@ export async function runGitInteractive() {
             await handleBranchMenu();
             continue;
         }
-        if (cmd === "pr") {
-            await runPR();
-            continue;
-        }
+       if (cmd === "pr") {
+    try {
+        await runPR();
+    } catch (err) {
+        console.log(chalk.red("❌ PR failed:"), err);
+    }
+    continue; // <-- ALWAYS keep user in interactive mode
+}
+
 
         console.log(chalk.red("❌ Unknown command. Try: add, branch, exit"));
     }

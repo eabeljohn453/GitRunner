@@ -54,9 +54,12 @@ async function ensureGitHubCLI() {
                 return false;
             }
 
-            console.log(chalk.blue("Starting GitHub login..."));
-            await run("gh auth login");
-            return true;
+            console.log(chalk.red("❌ You are not logged into GitHub CLI."));
+            console.log(chalk.yellow("Please run:"));
+            console.log(chalk.cyan("   gh auth login"));
+            console.log(chalk.green("Then run 'pr' again."));
+
+
         }
 
         return false;
@@ -99,21 +102,20 @@ export async function runPR() {
         const token = await run("gh auth token");
         const octokit = new Octokit({ auth: token });
 
-        const headBranch = await run("git branch --show-current");
-
-        const branches = (await run(
-            "git for-each-ref --format=%(refname:short) refs/heads"
-        ))
-            .split("\n")
-            .map((b) => b.trim())
-            .filter((b) => b.length > 0 && b !== headBranch);
+        const headBranch = await run("git branch --show-current"); 
+await run("git fetch --all");
+ 
+const remoteBranches = (await run("git ls-remote --heads origin"))
+  .split("\n")
+  .map(line => line.split("refs/heads/")[1])    
+  .filter(b => b && b.trim() !== headBranch);   
 
         const { base } = await inquirer.prompt([
             {
                 type: "list",
                 name: "base",
                 message: "Select base branch for PR:",
-                choices: branches,
+                choices: remoteBranches,
             },
         ]);
         const { title, desc } = await inquirer.prompt([
