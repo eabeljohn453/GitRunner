@@ -3,12 +3,13 @@ import chalk from "chalk";
 import { runAdd } from "./add.js";
 import { exec } from "child_process"
 import { handleBranchMenu } from "./branch.js";
+import { runPR } from "./pr.js";
  
 export async function runGitInteractive() {
 
     while (true) {
         console.log(chalk.blue("🔧 SimpleGit Interactive Mode"));
-        console.log(chalk.gray("Type 'add', 'branch', or 'exit'"));
+        console.log(chalk.gray("Type 'add', 'branch','pr' or 'exit'"));
         console.log("");
         const { userInput } = await inquirer.prompt([{
             type: "input",
@@ -26,6 +27,10 @@ export async function runGitInteractive() {
         }
         if (cmd === "branch") {
             await handleBranchMenu();
+            continue;
+        }
+        if (cmd === "pr") {
+            await runPR();
             continue;
         }
 
