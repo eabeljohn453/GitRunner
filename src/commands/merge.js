@@ -1,6 +1,7 @@
 import inquirer from "inquirer";
 import chalk from "chalk";
 import { exec } from "child_process"
+import { runAdd } from "./add.js";
 const run = (cmd) =>
     new Promise((resolve, reject) => {
         exec(cmd, (err, stdout, stderr) => {
@@ -43,6 +44,7 @@ export async function runMerge() {
             console.log(`current branch ${mergeBranch}`)
             await run(`git merge origin/${currentBranch}`)
             console.log(chalk.green("✔ Merge completed successfully!"));
+            await runAdd()
             return;
         }
         catch (err) {
