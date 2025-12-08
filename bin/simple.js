@@ -5,6 +5,7 @@ import { runGitInteractive } from "../src/commands/git.js";
 import { runAdd } from "../src/commands/add.js";  
 import { handleBranchMenu } from "../src/commands/branch.js";
 import {runPR} from "../src/commands/pr.js"
+import { runMerge } from "../src/commands/merge.js";
 program
   .command("add")
   .description("Auto add → commit → push")
@@ -23,5 +24,8 @@ program
   .command("pr")
   .description("create Pull Request")
   .action(runPR)
- 
+program
+  .command("merge")
+  .description("merge the branch")
+  .action(runMerge)
 program.parse(process.argv);

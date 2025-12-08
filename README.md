@@ -195,15 +195,7 @@ Include:
 - OS + Node version  
 
 ---
-
-## 🤝 Contributing
-
-1. Fork the repo  
-2. Create feature branch  
-3. Commit changes  
-4. Submit a Pull Request  
-
----
+ 
 
 ## 📜 License
 

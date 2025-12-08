@@ -3,11 +3,12 @@ import chalk from "chalk";
 import { runAdd } from "./add.js"; 
 import { handleBranchMenu } from "./branch.js";
 import { runPR } from "./pr.js";
+import { runMerge } from "./merge.js";
 
 export async function runGitInteractive() {
 
     console.log(chalk.blue("🔧 SimpleGit Interactive Mode"));
-    console.log(chalk.gray("Type 'add', 'branch', 'pr' or 'exit'"));
+    console.log(chalk.gray("Type 'add', 'branch', 'pr','merge' or 'exit'"));
     console.log("");
 
     while (true) {
@@ -44,7 +45,11 @@ export async function runGitInteractive() {
             }
             continue;  
         }
+        if(cmd==="merge"){
+            await runMerge();
+            continue
+        }
 
-        console.log(chalk.red("❌ Unknown command. Try: add, branch, pr, exit"));
+        console.log(chalk.red("❌ Unknown command. Try: add, branch, pr,merge,exit"));
     }
 }
