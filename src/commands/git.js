@@ -1,6 +1,6 @@
 import inquirer from "inquirer";
 import chalk from "chalk";
-import { runAdd } from "./add.js"; 
+import { runAdd } from "./add.js";
 import { handleBranchMenu } from "./branch.js";
 import { runPR } from "./pr.js";
 import { runMerge } from "./merge.js";
@@ -43,9 +43,9 @@ export async function runGitInteractive() {
             } catch (err) {
                 console.log(chalk.red("❌ PR failed:"), err);
             }
-            continue;  
+            continue;
         }
-        if(cmd==="merge"){
+        if (cmd === "merge") {
             await runMerge();
             continue
         }

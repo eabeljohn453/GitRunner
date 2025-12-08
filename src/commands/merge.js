@@ -38,7 +38,7 @@ export async function runMerge() {
             },
         ])
         console.log(chalk.blue(`Merging '${currentBranch}' into '${mergeBranch}'...`));
-         await run(`git checkout ${mergeBranch} `)
+        await run(`git checkout ${mergeBranch} `)
         try {
             await run(`git checkout ${mergeBranch} `)
             console.log(`current branch ${mergeBranch}`)

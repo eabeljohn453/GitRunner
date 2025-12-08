@@ -49,7 +49,7 @@ export async function handleBranchMenu() {
                         choices: branches
                     }
                 ]);
-                await run(`git checkout ${targetBranch}`); 
+                await run(`git checkout ${targetBranch}`);
                 break;
 
             case "Pull branch":
@@ -77,7 +77,7 @@ export async function handleBranchMenu() {
                         message: "Select branch to delete:",
                         choices: allBranches.filter(b => b !== "main")
                     }
-                ]); 
+                ]);
                 if (delBranch === currentBranch) {
                     console.log(chalk.yellow(`⚠ You are currently on '${currentBranch}'. Switching to main before deleting...`));
 
@@ -89,7 +89,7 @@ export async function handleBranchMenu() {
                         break;
                     }
                 }
- 
+
                 try {
                     await run(`git branch -d ${delBranch}`);
                     console.log(chalk.green(`✔ Deleted branch '${delBranch}'`));
