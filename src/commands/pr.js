@@ -55,8 +55,8 @@ async function ensureGitHubCLI() {
             }
 
             console.log(chalk.red("❌ You are not logged into GitHub CLI."));
-            console.log(chalk.yellow("Please run:"));
-            console.log(chalk.cyan("   gh auth login"));
+            console.log(chalk.yellow("please do 'ctrl c' and   run:"));
+            console.log(chalk.cyan("   gh auth login  - in terminal"));
             console.log(chalk.green("Then run 'pr' again."));
 
 
@@ -102,13 +102,13 @@ export async function runPR() {
         const token = await run("gh auth token");
         const octokit = new Octokit({ auth: token });
 
-        const headBranch = await run("git branch --show-current"); 
-await run("git fetch --all");
- 
-const remoteBranches = (await run("git ls-remote --heads origin"))
-  .split("\n")
-  .map(line => line.split("refs/heads/")[1])    
-  .filter(b => b && b.trim() !== headBranch);   
+        const headBranch = await run("git branch --show-current");
+        await run("git fetch --all");
+
+        const remoteBranches = (await run("git ls-remote --heads origin"))
+            .split("\n")
+            .map(line => line.split("refs/heads/")[1])
+            .filter(b => b && b.trim() !== headBranch);
 
         const { base } = await inquirer.prompt([
             {
