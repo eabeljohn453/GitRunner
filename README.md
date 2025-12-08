@@ -1,7 +1,7 @@
 # 🚀 git-autotool
 
 A smart and interactive **Git Automation CLI Tool** that removes repetitive Git steps.  
-Commit, push, switch/create/delete branches, and generate Pull Requests — all from one simple terminal tool.
+Commit, push, switch/create/delete branches, resolve conflicts, and create Pull Requests — all from one simple terminal tool.
 
 ---
 
@@ -9,13 +9,13 @@ Commit, push, switch/create/delete branches, and generate Pull Requests — all 
 
 - ⚡ Add → Commit → Push automatically  
 - 🌿 Create, switch, delete branches interactively  
-- 🧠 Auto-push new branches to remote  
+- 🔁 Merge branches with conflict resolution workflow  
+- 🧠 Auto-open conflict files in VS Code  
 - 🔃 Pull updates safely  
-- 🔀 Create Pull Requests via GitHub API  
-- 🧭 Full interactive Git mode  
-- 🎛️ Powered by **Inquirer.js**  
-- 🎨 Beautiful CLI with **chalk**  
-- 🧩 Built with **Node.js + Commander.js**
+- 🔀 Create Pull Requests using GitHub CLI token (automatic)  
+- 🧭 Interactive Git mode with multi-command support  
+- 🎛️ Built with **Inquirer.js**, **Chalk**, **Commander.js**  
+- 🧩 No manual token typing (auto-detects GitHub CLI login)
 
 ---
 
@@ -27,7 +27,7 @@ Install globally:
 npm install -g git-autotool
 ```
 
-Check:
+Verify install:
 
 ```bash
 auto --help
@@ -37,69 +37,55 @@ auto --help
 
 ## 🛠️ Usage
 
-Run:
-
-```bash
-auto
-```
-
-or enter interactive mode:
+Start interactive mode:
 
 ```bash
 auto git
 ```
 
-### Interactive Commands
+Or run individual commands:
 
-Inside interactive mode:
-
-| Command   | Description                     |
-|-----------|----------------------------------|
-| `add`     | Auto add → commit → push         |
-| `branch`  | Branch manager UI                |
-| `status`  | Show Git status                  |
-| `log`     | Show last commits                |
-| `exit`    | Exit interactive mode            |
+```bash
+auto add
+auto branch
+auto pr
+auto merge
+```
 
 ---
 
-## 🔧 Common CLI Commands
+## 🧭 Interactive Commands
 
-| Command         | Description                        |
-|-----------------|------------------------------------|
-| `auto add`      | Add → commit → push                |
-| `auto git`      | Enter interactive Git shell        |
-| `auto pr`       | Create Pull Request                |
-| `auto merge`    | Merge PR safely                    |
-| `auto branch`   | Manage Git branches                |
-| `auto init`     | Configure GitHub token             |
+Inside `auto git`, type:
+
+| Command   | Description                                   |
+|-----------|-----------------------------------------------|
+| `add`     | Auto add → commit → push                      |
+| `branch`  | Branch manager (create, delete, switch, pull) |
+| `pr`      | Create Pull Request (auto-auth via gh)        |
+| `merge`   | Merge branch with conflict inspector          |
+| `exit`    | Exit interactive mode                         |
 
 ---
 
-## 🔑 GitHub Authentication (Required for PR creation)
+## 🔐 GitHub Authentication (No Token Required)
 
-### 1️⃣ Create a Personal Access Token
+git-autotool uses **GitHub CLI** to authenticate automatically.
 
-GitHub → Settings → Developer settings → Personal access tokens
+If not installed, the tool:
 
-Enable:
+1. Detects that `gh` is missing  
+2. Offers two options:
+   - Open GitHub CLI download page  
+   - Auto-install via Winget  
+   
+First-time setup:
 
-- `repo`
-- `workflow`
-
-### 2️⃣ Save the token
-
-**Windows:**
-
-```bash
-setx GITHUB_TOKEN "your_token_here"
+```
+gh auth login
 ```
 
-**Mac/Linux:**
-
-```bash
-export GITHUB_TOKEN=your_token_here
-```
+After that, PR creation works automatically.
 
 ---
 
@@ -109,24 +95,16 @@ export GITHUB_TOKEN=your_token_here
 git-autotool/
 │
 ├── bin/
-│   └── simple.js                # CLI entry
+│   └── simple.js                # CLI entry file
 │
 ├── src/
 │   ├── commands/
 │   │   ├── add.js               # Add → Commit → Push
 │   │   ├── branch.js            # Branch manager
-│   │   ├── pr.js                # Pull Request creator
-│   │   ├── merge.js             # Merge handler
-│   │   └── conflict.js          # Conflict resolver
-│   │
-│   ├── helpers/
-│   │   ├── git.js               # Git helper utilities
-│   │   ├── github.js            # Octokit wrapper
-│   │
-│   ├── config.js                # Load simple.config.json
-│   └── utils.js                 # Utility functions
+│   │   ├── pr.js                # Pull Request generator
+│   │   ├── merge.js             # Branch merge & conflict resolver
+|   |   ├── git.js               # All the functionality to be done
 │
-├── simple.config.json           # User config file
 ├── package.json
 └── README.md
 ```
@@ -141,33 +119,18 @@ git-autotool/
 auto add
 ```
 
-After pushing:
-
-```
-Do you want to create a Pull Request? (yes/no)
-Choose base branch:
-> main
-  dev
-```
-
----
-
-### 2️⃣ Create PR
+### 2️⃣ Create a Pull Request
 
 ```bash
 auto pr
 ```
-
-Output:
 
 ```
 ✔ Pull Request Created!
 🔗 https://github.com/user/repo/pull/23
 ```
 
----
-
-### 3️⃣ Merge PR
+### 3️⃣ Merge Branches
 
 ```bash
 auto merge
@@ -175,14 +138,14 @@ auto merge
 
 Handles:
 
-- conflict detection  
-- VS Code conflict open  
-- safe merge  
-- branch cleanup  
+- Conflict detection  
+- Opens conflict files in VS Code  
+- Step-by-step fix → Enter → next file  
+- Auto commit after resolve  
 
 ---
 
-## 🐞 Issue Reporting
+## 🐞 Bug Reporting
 
 Submit issues:  
 👉 https://github.com/eabeljohn453/git-autotool/issues
@@ -190,12 +153,10 @@ Submit issues:
 Include:
 
 - Steps to reproduce  
-- Expected behavior  
-- Actual behavior  
-- OS + Node version  
+- Actual & expected behavior  
+- Node version + OS  
 
 ---
- 
 
 ## 📜 License
 
