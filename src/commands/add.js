@@ -39,7 +39,7 @@ export async function runAdd(){
     if (branch === "main") {
       console.log(chalk.green("✨ You are on main — no pull request needed."));
     } else {
-      console.log(chalk.yellow("👉 Run 'simple pr' to create a pull request."));
+      console.log(chalk.yellow("👉 Run 'pr' to create a pull request."));
     }
   } catch (err) {
     console.log(chalk.red("❌ Error:"), err);
