@@ -13,7 +13,7 @@ async function getConflictFiles() {
     return status
         .split("\n")
         .filter((line) => line.startsWith("UU"))
-        .map((line) => line.subString(3).trim())
+        .map((line) => line.substring(3).trim())
 }
 export async function runMerge() {
     try {
@@ -37,8 +37,11 @@ export async function runMerge() {
             },
         ])
         console.log(chalk.blue(`Merging '${currentBranch}' into '${mergeBranch}'...`));
+         await run(`git checkout ${mergeBranch} `)
         try {
-            await run(`git merge origin/${mergeBranch}`)
+            await run(`git checkout ${mergeBranch} `)
+            console.log(`current branch ${mergeBranch}`)
+            await run(`git merge origin/${currentBranch}`)
             console.log(chalk.green("✔ Merge completed successfully!"));
             return;
         }
